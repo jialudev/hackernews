@@ -1,0 +1,10 @@
+# Docs templates
+docs
+es/**/*
+lib/**/*
+node_modules
+dist
+coverage
+**/*.d.ts
+# Scripts
+public
