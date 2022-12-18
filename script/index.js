@@ -13,23 +13,20 @@ async function scrape(url) {
 
     for (var i = 0; i < titlesList.length; i++) {
       const title = titlesList[i].innerText.trim();
-      const content =`${i+1}. ${title}`
+      const url = titlesList[i].getAttribute('href');
+      const content = `${i + 1}. ${title},<${url}>;\r\n****\r\n\r\n`;
       movieArr.push(content);
     }
-    return movieArr.join(',\r\n')
+    return movieArr.join('');
   });
   const nowdate = date.format(new Date(), 'YYYY-MM-DD');
-  fs.writeFile(
-    `../record/${nowdate}.md`,
-    movies,
-    (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      console.log('Great Success');
-    },
-  );
+  fs.writeFile(`../record/${nowdate}.md`, movies, (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log('Great Success');
+  });
   browser.close();
 }
 
